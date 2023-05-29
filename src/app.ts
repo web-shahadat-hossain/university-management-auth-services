@@ -1,18 +1,19 @@
-import express, { Application, NextFunction, Request, Response } from "express";
-import cors from "cors";
-const app: Application = express();
+import express, { Application, NextFunction, Request, Response } from 'express'
+import cors from 'cors'
+const app: Application = express()
 
 // cors
-app.use(cors());
+               app.use(cors())
 
 //data parse
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
+
+app.use(express.urlencoded({ extended: true }))
 
 // testing api
-app.get("/", (req: Request, res: Response, next: NextFunction) => {
-  res.send("Hello World!");
-  next();
-});
+app.get('/', (req: Request, res: any, next: NextFunction) => {
+  res.send('Hello World!')
+  next()
+})
 
-export default app;
+export default app
