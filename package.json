@@ -6,17 +6,18 @@
   "scripts": {
     "start": "ts-node-dev --respawn --transpile-only src/server.ts",
     "lint:check": "eslint --ignore-path .eslintignore --ext .js,.ts .",
-    "lint:fix": "eslint --fix",
+    "lint:fix": "eslint . --fix",
     "format:check": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "lint-pettier": "npm run lint:check && npm run format:check ",
+    "prettier:fix": "prettier --write .",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "lint-staged": {
+    "src/**/*.ts": "npm run lint-pettier"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "lint-staged": {
-    "src/**/*.ts": "npm lint-pettier"
-  },
   "devDependencies": {
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
