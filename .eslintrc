@@ -1,4 +1,3 @@
-// .eslintrc
 {
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -6,18 +5,18 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint"],
-  // HERE
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
-
   "rules": {
     "@typescript-eslint/no-unused-vars": "error",
+    // "@typescript-eslint/no-console": "error",
+    // "@typescript-eslint/no-undef": "error",
+    // "@typescript-eslint/no-unreachable": "error",
     "@typescript-eslint/consistent-type-definitions": ["error", "type"]
   },
-
   "env": {
     "browser": true,
     "es2021": true
