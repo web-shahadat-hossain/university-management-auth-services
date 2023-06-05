@@ -8,3 +8,43 @@
 {"level":"info","message":"Example server listening on port 5000"}
 {"level":"error","message":"Fail to database connect "}
 {"level":"error","message":"Fail to database connect "}
+{"level":"info","message":"Database Connected "}
+{"level":"info","message":"Example server listening on port 5000"}
+{"level":"info","message":"Database Connected "}
+{"level":"info","message":"Example server listening on port 5000"}
+2023-06-05T04:09:01.347Z [right meow!] info: Database Connected 
+2023-06-05T04:09:01.351Z [right meow!] info: Example server listening on port 5000
+2023-06-05T04:10:13.305Z [right meow!] info: Database Connected 
+2023-06-05T04:10:13.311Z [right meow!] info: Example server listening on port 5000
+2023-06-05T04:10:49.786Z [right meow!] info: Database Connected 
+2023-06-05T04:10:49.790Z [right meow!] info: Example server listening on port 5000
+function toDateString() { [native code] } 10: 22: 56 [right meow!] info: Database Connected 
+function toDateString() { [native code] } 10: 22: 56 [right meow!] info: Example server listening on port 5000
+Mon Jun 05 2023 10: 23: 33 [right meow!] info: Database Connected 
+Mon Jun 05 2023 10: 23: 33 [right meow!] info: Example server listening on port 5000
+Mon Jun 05 2023 H:10: M:23: S:59 [right meow!] info: Database Connected 
+Mon Jun 05 2023 H:10: M:23: S:59 [right meow!] info: Example server listening on port 5000
+{
+  message: 'Database Connected ',
+  level: 'info',
+  label: 'right meow!',
+  timestamp: '2023-06-05T04:25:25.663Z'
+}
+{
+  message: 'Example server listening on port 5000',
+  level: 'info',
+  label: 'right meow!',
+  timestamp: '2023-06-05T04:25:25.670Z'
+}
+{
+  message: 'Database Connected ',
+  level: 'info',
+  label: 'right meow!',
+  timestamp: '2023-06-05T04:25:50.169Z'
+}
+{
+  message: 'Example server listening on port 5000',
+  level: 'info',
+  label: 'right meow!',
+  timestamp: '2023-06-05T04:25:50.179Z'
+}
