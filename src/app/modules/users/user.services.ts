@@ -1,4 +1,5 @@
 import config from '../../../config'
+import apiError from '../../../errors/apiError'
 import { IUser } from './users.Interface'
 import { User } from './users.models'
 import { generateUserId } from './users.utility '
@@ -12,10 +13,10 @@ const createUserServices = async (user: IUser): Promise<IUser | null> => {
     user.password = config.Default_User_Pass as string
   }
 
-  const userCreate = User.create(user)
+  const userCreate = await User.create(user)
 
   if (!userCreate) {
-    throw new Error('Failed to create user!')
+    throw new apiError(400, 'Failed to create user!')
   }
 
   return userCreate

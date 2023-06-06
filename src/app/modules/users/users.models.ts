@@ -7,7 +7,7 @@ const userSchema = new Schema<IUser>(
   {
     role: {
       type: String,
-      require: true,
+      required: true,
     },
     id: {
       type: String,
