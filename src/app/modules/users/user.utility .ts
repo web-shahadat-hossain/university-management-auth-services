@@ -1,4 +1,4 @@
-import { User } from './users.models'
+import { User } from './user.models'
 export const findUserId = () => {
   const lastUser = User.findOne({}, { id: 1, _id: 0 })
     .sort({ createdAt: -1 })
