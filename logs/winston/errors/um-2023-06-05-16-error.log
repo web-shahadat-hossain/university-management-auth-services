@@ -1,0 +1,6 @@
+{
+  message: 'Fail to database connect ',
+  level: 'error',
+  label: 'right meow!',
+  timestamp: '2023-06-05T10:56:11.066Z'
+}
