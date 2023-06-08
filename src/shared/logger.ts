@@ -1,16 +1,16 @@
-import { createLogger, format, transports } from 'winston'
-import path from 'path'
-import DailyRotateFile from 'winston-daily-rotate-file'
+import { createLogger, format, transports } from 'winston';
+import path from 'path';
+import DailyRotateFile from 'winston-daily-rotate-file';
 
-const { combine, timestamp, label, printf, prettyPrint } = format
+const { combine, timestamp, label, printf, prettyPrint } = format;
 
 const myFormat = printf(({ level, message, label, timestamp }) => {
-  const date = new Date(timestamp)
-  const hours = date.getHours()
-  const minute = date.getMinutes()
-  const second = date.getSeconds()
-  return `${date.toDateString()} H:${hours}: M:${minute}: S:${second} [${label}] ${level}: ${message}`
-})
+  const date = new Date(timestamp);
+  const hours = date.getHours();
+  const minute = date.getMinutes();
+  const second = date.getSeconds();
+  return `${date.toDateString()} H:${hours}: M:${minute}: S:${second} [${label}] ${level}: ${message}`;
+});
 
 const logger = createLogger({
   level: 'info',
@@ -38,7 +38,7 @@ const logger = createLogger({
       maxFiles: '14d',
     }),
   ],
-})
+});
 const loggerError = createLogger({
   level: 'error',
   format: combine(
@@ -65,8 +65,8 @@ const loggerError = createLogger({
       maxFiles: '14d',
     }),
   ],
-})
+});
 
-export { logger, loggerError }
+export { logger, loggerError };
 
 // logs winston success
