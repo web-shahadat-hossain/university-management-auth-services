@@ -9,6 +9,11 @@
             "date": 1686370010259,
             "name": "F:\\next level\\university-management-auth-services-UPM-20\\logs\\winston\\errors\\um-2023-06-10-10-error.log",
             "hash": "516a21a487f9e36630eee02f1619309f6684b02e20189c726c5f1391fa82b762"
+        },
+        {
+            "date": 1686373204945,
+            "name": "F:\\next level\\university-management-auth-services-UPM-20\\logs\\winston\\errors\\um-2023-06-10-11-error.log",
+            "hash": "1260d76e7fe1fe6ff04473043e16d80896bbd124d6ba1e6dd45995a0d7296ad9"
         }
     ],
     "hashType": "sha256"
