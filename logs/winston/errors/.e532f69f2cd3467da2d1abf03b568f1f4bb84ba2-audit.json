@@ -19,6 +19,16 @@
             "date": 1686382002641,
             "name": "F:\\next level\\university-management-auth-services-UPM-20\\logs\\winston\\errors\\um-2023-06-10-13-error.log",
             "hash": "6bf7e52e8d80d19f687c53b23860aa76dfb31a12c4f1587a55744cbbe6a693d9"
+        },
+        {
+            "date": 1686389879939,
+            "name": "F:\\next level\\university-management-auth-services-UPM-20\\logs\\winston\\errors\\um-2023-06-10-15-error.log",
+            "hash": "29589e8ba7e9897ebeaec39641e7d88ebb3e999b7ac9f9818271b133c29738e6"
+        },
+        {
+            "date": 1686391450222,
+            "name": "F:\\next level\\university-management-auth-services-UPM-20\\logs\\winston\\errors\\um-2023-06-10-16-error.log",
+            "hash": "347584f79178a14a3da89d65a8d94ff56399971482df96656b4716cb86edd3df"
         }
     ],
     "hashType": "sha256"
