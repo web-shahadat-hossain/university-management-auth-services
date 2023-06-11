@@ -3,6 +3,8 @@ import apiError from '../../../errors/apiError';
 import { academicSemesterTitleCodeMapper } from './academicSemester.constants';
 import { IAcademicSemester } from './academicSemester.interface';
 import { academicSemester } from './academicSemester.model';
+import { IPagination } from '../../../interface/pagination';
+import { IGenericResponse } from '../../../interface/common';
 
 const createAcademicSemester = async (
   payload: IAcademicSemester
@@ -14,6 +16,24 @@ const createAcademicSemester = async (
   return result;
 };
 
+const getAllAcademicSemester = async (
+  payload: IPagination
+): Promise<IGenericResponse<IAcademicSemester[]>> => {
+  const { page = 1, limit = 10 } = payload;
+  const skip = (page - 1) * limit;
+  const result = await academicSemester.find({}).sort().skip(skip).limit(limit);
+  const total = await academicSemester.countDocuments();
+  return {
+    meta: {
+      page,
+      limit,
+      total,
+    },
+    data: result,
+  };
+};
+
 export const academicSemesterServices = {
   createAcademicSemester,
+  getAllAcademicSemester,
 };
