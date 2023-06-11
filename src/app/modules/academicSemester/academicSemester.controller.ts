@@ -5,6 +5,7 @@ import httpStatus from 'http-status';
 import sendResponse from '../../../shared/sendResponse';
 import pick from '../../../shared/pick';
 import { paginationField } from '../../../constants/constants';
+import { academicSemesterFilteringFiled } from './academicSemester.constants';
 
 const createAcademicSemesterController = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -24,9 +25,11 @@ const createAcademicSemesterController = catchAsync(
 );
 const getAllAcademicSemesterController = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
+    const filters = pick(req.query, academicSemesterFilteringFiled);
     const paginationOptions = pick(req.query, paginationField);
     const result = await academicSemesterServices.getAllAcademicSemester(
-      paginationOptions
+      paginationOptions,
+      filters
     );
 
     sendResponse(res, {
@@ -40,7 +43,22 @@ const getAllAcademicSemesterController = catchAsync(
   }
 );
 
+const getSingleAcademicSemesterController = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const id = req.params.id;
+    const result = await academicSemesterServices.getSingleAcademicSemester(id);
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Semester retrieved successfully!!!',
+      data: result,
+    });
+    next();
+  }
+);
+
 export const academicSemesterController = {
   createAcademicSemesterController,
   getAllAcademicSemesterController,
+  getSingleAcademicSemesterController,
 };
