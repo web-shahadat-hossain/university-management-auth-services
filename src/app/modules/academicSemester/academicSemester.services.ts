@@ -14,6 +14,7 @@ import { IGenericResponse } from '../../../interface/common';
 import { paginationHelpers } from '../../../helpers/paginationHelpers';
 import { SortOrder } from 'mongoose';
 
+// semester create service
 const createAcademicSemester = async (
   payload: IAcademicSemester
 ): Promise<IAcademicSemester> => {
@@ -23,6 +24,8 @@ const createAcademicSemester = async (
   const result = await academicSemester.create(payload);
   return result;
 };
+
+// get all semester services
 
 const getAllAcademicSemester = async (
   Pagination: IPagination,
@@ -81,15 +84,16 @@ const getAllAcademicSemester = async (
     data: result,
   };
 };
+
+// single semester services
 const getSingleAcademicSemester = async (
   id: string
 ): Promise<IAcademicSemester | null> => {
-  // if (!isValidObjectId(id)) {
-  //   throw new apiError(httpStatus.BAD_REQUEST, 'Your Id Not Valid');
-  // }
   const result = await academicSemester.findOne({ _id: id });
   return result;
 };
+
+// update semester services
 const updateAcademicSemester = async (
   id: string,
   payload: Partial<IAcademicSemester>
@@ -105,10 +109,16 @@ const updateAcademicSemester = async (
   });
   return result;
 };
+// delete semester services
+const deleteAcademicSemester = async (id: string) => {
+  const result = await academicSemester.findByIdAndDelete({ _id: id });
+  return result;
+};
 
 export const academicSemesterServices = {
   createAcademicSemester,
   getAllAcademicSemester,
   getSingleAcademicSemester,
   updateAcademicSemester,
+  deleteAcademicSemester,
 };

@@ -15,6 +15,10 @@ router.patch(
   validateRequest(academicSemesterValidation.updateAcademicSemesterValidation),
   academicSemesterController.updateAcademicSemesterController
 );
+router.delete(
+  '/:id',
+  academicSemesterController.deleteAcademicSemesterController
+);
 router.get(
   '/:id',
   academicSemesterController.getSingleAcademicSemesterController

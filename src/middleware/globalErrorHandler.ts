@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+// eslint-disable-next-line no-console
+
 import { ErrorRequestHandler } from 'express';
 import config from '../config';
 import { IGenericErrorMessage } from '../interface/error';
@@ -7,11 +10,9 @@ import { loggerError } from '../shared/logger';
 import { ZodError } from 'zod';
 import { validationZodErrorHandler } from '../errors/validationZodErrorHandler';
 import CastErrorHandler from '../errors/CastErrorHandler';
-
 const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   config.env === 'development'
-    ? // eslint-disable-next-line no-console
-      console.error('Global Error Handler.......', error)
+    ? console.error('Global Error Handler.......', error)
     : loggerError.error('Global Error Handler......', error);
 
   // error pattern
@@ -66,8 +67,6 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
     errorMessages: errorMessages,
     stack: config.env !== 'production' ? error?.stack : undefined,
   });
-
-  next();
 };
 
 export default globalErrorHandler;
