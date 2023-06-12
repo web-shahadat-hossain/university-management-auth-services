@@ -19,7 +19,7 @@ const academicSemesterSchema = new Schema<IAcademicSemester>(
       required: true,
     },
     year: {
-      type: Number,
+      type: String,
       required: true,
     },
 
