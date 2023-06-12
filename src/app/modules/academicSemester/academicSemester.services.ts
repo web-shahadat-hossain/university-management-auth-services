@@ -12,7 +12,7 @@ import { academicSemester } from './academicSemester.model';
 import { IPagination } from '../../../interface/pagination';
 import { IGenericResponse } from '../../../interface/common';
 import { paginationHelpers } from '../../../helpers/paginationHelpers';
-import { SortOrder, isValidObjectId } from 'mongoose';
+import { SortOrder } from 'mongoose';
 
 const createAcademicSemester = async (
   payload: IAcademicSemester
@@ -84,10 +84,25 @@ const getAllAcademicSemester = async (
 const getSingleAcademicSemester = async (
   id: string
 ): Promise<IAcademicSemester | null> => {
-  if (!isValidObjectId(id)) {
-    throw new apiError(httpStatus.BAD_REQUEST, 'Your Id Not Valid');
-  }
+  // if (!isValidObjectId(id)) {
+  //   throw new apiError(httpStatus.BAD_REQUEST, 'Your Id Not Valid');
+  // }
   const result = await academicSemester.findOne({ _id: id });
+  return result;
+};
+const updateAcademicSemester = async (
+  id: string,
+  payload: Partial<IAcademicSemester>
+): Promise<IAcademicSemester | null> => {
+  if (
+    payload?.title &&
+    academicSemesterTitleCodeMapper[payload?.title] !== payload.code
+  ) {
+    throw new apiError(httpStatus.BAD_REQUEST, 'involved semester code');
+  }
+  const result = await academicSemester.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
   return result;
 };
 
@@ -95,4 +110,5 @@ export const academicSemesterServices = {
   createAcademicSemester,
   getAllAcademicSemester,
   getSingleAcademicSemester,
+  updateAcademicSemester,
 };
