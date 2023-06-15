@@ -3,6 +3,7 @@ import cors from 'cors';
 import globalErrorHandler from './middleware/globalErrorHandler';
 import routes from './routes';
 import httpStatus from 'http-status';
+
 const app: Application = express();
 // cors
 app.use(cors());
