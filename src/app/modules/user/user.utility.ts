@@ -59,7 +59,7 @@ export const findLastAdminId = async () => {
     .sort({ createdAt: -1 })
     .lean();
 
-  return lastAdmin?.id ? lastAdmin?.id.substring(1) : undefined;
+  return lastAdmin?.id ? lastAdmin?.id.substring(2) : undefined;
 };
 
 export const generateAdminId = async () => {
@@ -67,6 +67,6 @@ export const generateAdminId = async () => {
   const currentId = lastAdminId || (0).toString().padStart(5, '0');
   let adminIncrementId = (Number(currentId) + 1).toString().padStart(5, '0');
 
-  adminIncrementId = `A${adminIncrementId}`;
+  adminIncrementId = `A-${adminIncrementId}`;
   return adminIncrementId;
 };

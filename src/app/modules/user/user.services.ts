@@ -6,11 +6,19 @@ import { academicSemester } from '../academicSemester/academicSemester.model';
 import { IStudent } from '../student/student.interface';
 import { IUser } from './user.Interface';
 import { User } from './user.models';
-import { generateFacultyId, generateStudentId } from './user.utility';
+import {
+  generateAdminId,
+  generateFacultyId,
+  generateStudentId,
+} from './user.utility';
 import { Student } from '../student/student.model';
 import httpStatus from 'http-status';
 import { IFaculty } from '../faculty/faculty.interface';
 import { Faculty } from '../faculty/faculty.model';
+import { IAdmin } from '../admin/admin.interface';
+import { Admin } from '../admin/admin.model';
+
+// student create services
 
 const createStudent = async (
   student: IStudent,
@@ -74,12 +82,14 @@ const createStudent = async (
   return newUserData;
 };
 
+// faculty create services
+
 const createFacultyService = async (
   faculty: IFaculty,
   user: IUser
 ): Promise<IUser | null> => {
   if (!user.password) {
-    user.password = '0251';
+    user.password = config.Default_Faculty_Pass as string;
   }
   user.role = ENUM_USER_ROLE.FACULTY;
 
@@ -129,7 +139,62 @@ const createFacultyService = async (
   return newUserData;
 };
 
+// admin create services
+
+const createAdminService = async (
+  admin: IAdmin,
+  user: IUser
+): Promise<IUser | null> => {
+  if (!user.password) {
+    user.password = config.Default_Admin_Pass as string;
+  }
+  user.role = ENUM_USER_ROLE.ADMIN;
+
+  const session = await mongoose.startSession();
+  let newUserData = null;
+  try {
+    session.startTransaction();
+    const id = await generateAdminId();
+    user.id = id;
+    admin.id = id;
+    // admin create
+    const createAdmin = await Admin.create([admin], { session });
+    if (!createAdmin.length) {
+      throw new apiError(httpStatus.BAD_REQUEST, 'Failed to create Admin!');
+    }
+
+    // user create
+    user.admin = createAdmin[0]?._id;
+    const userCreate = await User.create([user], { session });
+
+    if (!userCreate.length) {
+      throw new apiError(httpStatus.BAD_REQUEST, 'Failed to create user!');
+    }
+    newUserData = userCreate[0];
+    await session.commitTransaction();
+    await session.endSession();
+  } catch (err) {
+    await session.abortTransaction();
+    await session.endSession();
+    throw err;
+  }
+
+  if (newUserData) {
+    newUserData = await User.findOne({ id: newUserData.id }).populate({
+      path: 'admin',
+      populate: [
+        {
+          path: 'managementDepartment',
+        },
+      ],
+    });
+  }
+
+  return newUserData;
+};
+
 export const userServices = {
   createStudent,
   createFacultyService,
+  createAdminService,
 };
