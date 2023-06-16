@@ -6,9 +6,11 @@ import { academicSemester } from '../academicSemester/academicSemester.model';
 import { IStudent } from '../student/student.interface';
 import { IUser } from './user.Interface';
 import { User } from './user.models';
-import { generateStudentId } from './user.utility ';
+import { generateFacultyId, generateStudentId } from './user.utility';
 import { Student } from '../student/student.model';
 import httpStatus from 'http-status';
+import { IFaculty } from '../faculty/faculty.interface';
+import { Faculty } from '../faculty/faculty.model';
 
 const createStudent = async (
   student: IStudent,
@@ -72,6 +74,62 @@ const createStudent = async (
   return newUserData;
 };
 
+const createFacultyService = async (
+  faculty: IFaculty,
+  user: IUser
+): Promise<IUser | null> => {
+  if (!user.password) {
+    user.password = '0251';
+  }
+  user.role = ENUM_USER_ROLE.FACULTY;
+
+  const session = await mongoose.startSession();
+  let newUserData = null;
+  try {
+    session.startTransaction();
+    const id = await generateFacultyId();
+    user.id = id;
+    faculty.id = id;
+    // student create
+    const createFaculty = await Faculty.create([faculty], { session });
+    if (!createFaculty.length) {
+      throw new apiError(httpStatus.BAD_REQUEST, 'Failed to create faculty!');
+    }
+
+    // user create
+    user.faculty = createFaculty[0]?._id;
+    const userCreate = await User.create([user], { session });
+
+    if (!userCreate.length) {
+      throw new apiError(httpStatus.BAD_REQUEST, 'Failed to create user!');
+    }
+    newUserData = userCreate[0];
+    await session.commitTransaction();
+    await session.endSession();
+  } catch (err) {
+    await session.abortTransaction();
+    await session.endSession();
+    throw err;
+  }
+
+  if (newUserData) {
+    newUserData = await User.findOne({ id: newUserData.id }).populate({
+      path: 'faculty',
+      populate: [
+        {
+          path: 'academicDepartment',
+        },
+        {
+          path: 'academicFaculty',
+        },
+      ],
+    });
+  }
+
+  return newUserData;
+};
+
 export const userServices = {
   createStudent,
+  createFacultyService,
 };

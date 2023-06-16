@@ -31,21 +31,21 @@ export const generateStudentId = async (
 // faculty id generate
 
 export const findLastFacultyId = async () => {
-  const lastFaculty = await User.findOne(
-    { role: ENUM_USER_ROLE.FACULTY },
-    { id: 1, _id: 0 }
-  )
+  const lastFaculty = await User.findOne({ role: 'faculty' }, { id: 1, _id: 0 })
     .sort({ createdAt: -1 })
     .lean();
-  return lastFaculty?.id ? lastFaculty?.id.substring(1) : undefined;
+
+  return lastFaculty?.id ? lastFaculty?.id.substring(2) : undefined;
 };
 
 export const generateFacultyId = async () => {
   const lastFacultyId = await findLastFacultyId();
+
   const currentId = lastFacultyId || (0).toString().padStart(5, '0');
   let facultyIncrementId = (Number(currentId) + 1).toString().padStart(5, '0');
 
-  facultyIncrementId = `F${facultyIncrementId}`;
+  facultyIncrementId = `F-${facultyIncrementId}`;
+
   return facultyIncrementId;
 };
 
