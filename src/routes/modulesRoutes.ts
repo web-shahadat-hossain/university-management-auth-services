@@ -4,6 +4,7 @@ import { academicFacultyRouters } from '../app/modules/academicFaculty/academicF
 import { academicDepartmentRouter } from '../app/modules/academicDepartment/academicDepartment.router';
 import { studentRouters } from '../app/modules/student/student.router';
 import { facultyRouters } from '../app/modules/faculty/faculty.router';
+import { managementDepartmentRouters } from '../app/modules/managementDepartment/managementDepertment.router';
 
 const modulesRoutes = [
   {
@@ -21,6 +22,10 @@ const modulesRoutes = [
   {
     path: '/academic-department',
     route: academicDepartmentRouter.router,
+  },
+  {
+    path: '/management-department',
+    route: managementDepartmentRouters.router,
   },
   {
     path: '/students',
