@@ -27,6 +27,7 @@ const createStudent = async (
   if (!user.password) {
     user.password = config.Default_Student_Pass as string;
   }
+
   user.role = ENUM_USER_ROLE.STUDENT;
 
   const academicSemesterData = await academicSemester.findOne({

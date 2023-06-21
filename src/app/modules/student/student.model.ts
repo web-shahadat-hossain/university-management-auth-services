@@ -39,10 +39,8 @@ const studentSchema = new Schema<IStudent, StudentModel>(
       require: true,
       unique: true,
     },
-    contactNo: {
-      type: String,
-      require: true,
-    },
+    contactNo: { type: String, required: true, unique: true },
+
     emergencyContactNo: {
       type: String,
       require: true,
