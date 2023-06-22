@@ -5,113 +5,104 @@ const studentSchema = new Schema<IStudent, StudentModel>(
   {
     id: {
       type: String,
-      require: true,
+      required: true,
       unique: true,
     },
     name: {
-      require: true,
+      required: true,
       type: {
         firstName: {
           type: String,
-          require: true,
+          required: true,
         },
         middleName: {
           type: String,
         },
         lastName: {
           type: String,
-          require: true,
+          required: true,
         },
       },
     },
-
     gender: {
       type: String,
       enum: gender,
-      require: true,
+      required: true,
     },
     dateOfBirth: {
       type: String,
-      require: true,
+      required: true,
     },
-    email: {
-      type: String,
-      require: true,
-      unique: true,
-    },
-    contactNo: {
-      type: String,
-      require: true,
-    },
+    email: { type: String, required: true, unique: true },
+    contactNo: { type: String, required: true, unique: true },
     emergencyContactNo: {
       type: String,
-      require: true,
+      required: true,
     },
     presentAddress: {
       type: String,
-      require: true,
+      required: true,
     },
     permanentAddress: {
       type: String,
-      require: true,
+      required: true,
     },
     bloodGroup: {
       type: String,
-      require: true,
+      required: true,
       enum: bloodGroup,
     },
-
     guardian: {
-      require: true,
+      required: true,
       type: {
         fatherName: {
           type: String,
-          require: true,
+          required: true,
         },
         fatherOccupation: {
           type: String,
-          require: true,
+          required: true,
         },
         fatherContactNo: {
           type: String,
-          require: true,
+          required: true,
         },
         motherName: {
           type: String,
-          require: true,
+          required: true,
         },
         motherOccupation: {
           type: String,
-          require: true,
+          required: true,
         },
         motherContactNo: {
           type: String,
-          require: true,
+          required: true,
         },
         address: {
           type: String,
-          require: true,
+          required: true,
         },
       },
     },
     localGuardian: {
-      require: true,
+      required: true,
       type: {
         name: {
           type: String,
-          require: true,
+          required: true,
         },
         occupation: {
           type: String,
-          require: true,
+          required: true,
         },
         contactNo: {
           type: String,
-          require: true,
+          required: true,
         },
         address: {
           type: String,
-          require: true,
+          required: true,
         },
       },
     },
@@ -121,17 +112,17 @@ const studentSchema = new Schema<IStudent, StudentModel>(
     academicSemester: {
       type: Schema.Types.ObjectId,
       ref: 'academicSemester',
-      require: true,
+      required: true,
     },
     academicDepartment: {
       type: Schema.Types.ObjectId,
       ref: 'academicDepartment',
-      require: true,
+      required: true,
     },
     academicFaculty: {
       type: Schema.Types.ObjectId,
       ref: 'academicFaculty',
-      require: true,
+      required: true,
     },
   },
   {
