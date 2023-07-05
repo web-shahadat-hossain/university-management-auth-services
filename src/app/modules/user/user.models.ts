@@ -36,6 +36,9 @@ const userSchema = new Schema<IUser, Record<string, never>, IUserMethods>(
       type: Schema.Types.ObjectId,
       ref: 'Admin',
     },
+    passwordChangeAt: {
+      type: Date,
+    },
   },
   {
     timestamps: true,
