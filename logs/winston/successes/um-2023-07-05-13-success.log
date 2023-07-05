@@ -2,119 +2,143 @@
   message: 'Database Connected ',
   level: 'info',
   label: 'UM!',
-  timestamp: '2023-06-10T18:29:23.453Z'
+  timestamp: '2023-07-05T07:30:11.652Z'
 }
 {
   message: 'Example server listening on port 5000',
   level: 'info',
   label: 'UM!',
-  timestamp: '2023-06-10T18:29:23.476Z'
+  timestamp: '2023-07-05T07:30:13.361Z'
 }
 {
   message: 'Database Connected ',
   level: 'info',
   label: 'UM!',
-  timestamp: '2023-06-10T18:31:16.163Z'
+  timestamp: '2023-07-05T07:36:54.411Z'
 }
 {
   message: 'Example server listening on port 5000',
   level: 'info',
   label: 'UM!',
-  timestamp: '2023-06-10T18:31:16.177Z'
+  timestamp: '2023-07-05T07:36:54.438Z'
 }
 {
   message: 'Database Connected ',
   level: 'info',
   label: 'UM!',
-  timestamp: '2023-06-10T18:44:27.221Z'
+  timestamp: '2023-07-05T07:37:59.408Z'
 }
 {
   message: 'Example server listening on port 5000',
   level: 'info',
   label: 'UM!',
-  timestamp: '2023-06-10T18:44:27.248Z'
+  timestamp: '2023-07-05T07:37:59.425Z'
 }
 {
   message: 'Database Connected ',
   level: 'info',
   label: 'UM!',
-  timestamp: '2023-06-10T18:48:24.981Z'
+  timestamp: '2023-07-05T07:41:41.325Z'
 }
 {
   message: 'Example server listening on port 5000',
   level: 'info',
   label: 'UM!',
-  timestamp: '2023-06-10T18:48:24.997Z'
+  timestamp: '2023-07-05T07:41:41.367Z'
 }
 {
   message: 'Database Connected ',
   level: 'info',
   label: 'UM!',
-  timestamp: '2023-06-10T18:49:35.635Z'
+  timestamp: '2023-07-05T07:42:51.404Z'
 }
 {
   message: 'Example server listening on port 5000',
   level: 'info',
   label: 'UM!',
-  timestamp: '2023-06-10T18:49:35.650Z'
+  timestamp: '2023-07-05T07:42:51.431Z'
 }
 {
   message: 'Database Connected ',
   level: 'info',
   label: 'UM!',
-  timestamp: '2023-06-10T18:49:41.423Z'
+  timestamp: '2023-07-05T07:46:56.134Z'
 }
 {
   message: 'Example server listening on port 5000',
   level: 'info',
   label: 'UM!',
-  timestamp: '2023-06-10T18:49:41.439Z'
+  timestamp: '2023-07-05T07:46:56.152Z'
 }
 {
   message: 'Database Connected ',
   level: 'info',
   label: 'UM!',
-  timestamp: '2023-06-10T18:50:11.781Z'
+  timestamp: '2023-07-05T07:49:42.222Z'
 }
 {
   message: 'Example server listening on port 5000',
   level: 'info',
   label: 'UM!',
-  timestamp: '2023-06-10T18:50:11.806Z'
+  timestamp: '2023-07-05T07:49:42.250Z'
 }
 {
   message: 'Database Connected ',
   level: 'info',
   label: 'UM!',
-  timestamp: '2023-06-10T18:55:58.615Z'
+  timestamp: '2023-07-05T07:54:27.396Z'
 }
 {
   message: 'Example server listening on port 5000',
   level: 'info',
   label: 'UM!',
-  timestamp: '2023-06-10T18:55:58.643Z'
+  timestamp: '2023-07-05T07:54:27.412Z'
 }
 {
   message: 'Database Connected ',
   level: 'info',
   label: 'UM!',
-  timestamp: '2023-06-10T18:57:44.702Z'
+  timestamp: '2023-07-05T07:55:47.348Z'
 }
 {
   message: 'Example server listening on port 5000',
   level: 'info',
   label: 'UM!',
-  timestamp: '2023-06-10T18:57:44.727Z'
+  timestamp: '2023-07-05T07:55:47.366Z'
 }
 {
   message: 'Database Connected ',
   level: 'info',
   label: 'UM!',
-  timestamp: '2023-06-10T18:58:10.998Z'
+  timestamp: '2023-07-05T07:57:45.683Z'
 }
 {
   message: 'Example server listening on port 5000',
   level: 'info',
   label: 'UM!',
-  timestamp: '2023-06-10T18:58:11.026Z'
+  timestamp: '2023-07-05T07:57:45.712Z'
+}
+{
+  message: 'Database Connected ',
+  level: 'info',
+  label: 'UM!',
+  timestamp: '2023-07-05T07:58:58.980Z'
+}
+{
+  message: 'Example server listening on port 5000',
+  level: 'info',
+  label: 'UM!',
+  timestamp: '2023-07-05T07:58:59.003Z'
+}
+{
+  message: 'Database Connected ',
+  level: 'info',
+  label: 'UM!',
+  timestamp: '2023-07-05T07:59:46.177Z'
+}
+{
+  message: 'Example server listening on port 5000',
+  level: 'info',
+  label: 'UM!',
+  timestamp: '2023-07-05T07:59:46.192Z'
 }

@@ -1,14 +1,18 @@
 import httpStatus from 'http-status';
 import apiError from '../../../errors/apiError';
 import { User } from '../user/user.models';
-import { ILoginUser, ILoginUserResponse } from './auth.interface';
+import {
+  ILoginUser,
+  ILoginUserResponse,
+  IPasswordChange,
+} from './auth.interface';
 import config from '../../../config';
 import { jwtHelpers } from '../../../helpers/jwtHelpers';
-import { Secret } from 'jsonwebtoken';
+import { JwtPayload, Secret } from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 
 const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
   const { id, password } = payload;
-
   //   check use exist
   const user = new User();
   const isExistUser = await user.isExistUser(id);
@@ -18,11 +22,17 @@ const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
   }
 
   // password match
-  if (
-    isExistUser.password &&
-    !user.matchPassword(password, isExistUser.password)
-  ) {
-    throw new apiError(httpStatus.UNAUTHORIZED, 'password is incorrect');
+  // password match
+  if (typeof isExistUser.password !== 'string') {
+    throw new apiError(httpStatus.BAD_REQUEST, 'Invalid old password');
+  }
+  const matchPassword = await user.matchPassword(
+    password,
+    isExistUser.password
+  );
+
+  if (!matchPassword) {
+    throw new apiError(httpStatus.UNAUTHORIZED, 'old password is incorrect');
   }
 
   const { id: userId, role, needsPasswordChange } = isExistUser;
@@ -83,7 +93,52 @@ const refreshToken = async (token: string) => {
   };
 };
 
+const changePassword = async (
+  userData: JwtPayload,
+  payload: IPasswordChange
+) => {
+  const { oldPassword, newPassword } = payload;
+  //   check use exist
+  const user = new User();
+
+  const isExistUser = await user.isExistUser(userData?.userId);
+
+  if (!isExistUser) {
+    throw new apiError(httpStatus.NOT_FOUND, 'User does not exist');
+  }
+  // password match
+  if (typeof isExistUser.password !== 'string') {
+    throw new apiError(httpStatus.BAD_REQUEST, 'Invalid old password');
+  }
+  const matchPassword = await user.matchPassword(
+    oldPassword,
+    isExistUser.password
+  );
+
+  if (!matchPassword) {
+    throw new apiError(httpStatus.UNAUTHORIZED, 'old password is incorrect');
+  }
+
+  const newHashPassword = await bcrypt.hash(
+    newPassword,
+    Number(config.default_bcrypt_salt_rounds)
+  );
+
+  // update password
+
+  const updateData = {
+    needsPasswordChange: false,
+    password: newHashPassword,
+    passwordChangeAt: new Date(),
+  };
+
+  await User.findOneAndUpdate({ id: userData?.userId }, updateData, {
+    new: true,
+  });
+};
+
 export const authServices = {
   loginUser,
   refreshToken,
+  changePassword,
 };
